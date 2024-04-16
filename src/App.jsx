@@ -1,16 +1,23 @@
+import { useState } from "react";
 import "./App.css";
-import Navigation from "./components/Navigation/Navigation";
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactHeader from "./components/ContactHeader/ContactHeader";
+import StartGame from "./components/StartGame";
+import GamePlay from './components/GamePlay'
 
 function App() {
+  const [isGameStart, setIsGameStart] = useState(false);
+
+  const toggleGamePlay = ()=> {
+    setIsGameStart((prev)=> !prev);
+  }
+
   return (
     <>
-      <Navigation />
-      <div className="main px-[1rem] sm:px-[5rem] md:px-[12rem] pt-[2.8rem] pb-8 sm:pb-0">
-        <ContactHeader />
-        <ContactForm />
-      </div>
+      {
+        isGameStart ?
+        <GamePlay />
+        :
+        <StartGame toggle={toggleGamePlay} />
+      }
     </>
   );
 }
