@@ -10,7 +10,7 @@ const GamePlay = () => {
   const [randomNum, setRandomNum] = useState(1);
   const [isError, setError] = useState("");
   const [showRules, setShowRules] = useState(false);
-  console.log(isError);
+
   const roleDice = () => {
     if (!selectedNum) {
       setError("Please select a number first");
@@ -41,7 +41,7 @@ const GamePlay = () => {
 
   return (
     <>
-      <section className="w-full py-12 sm:px-[5rem] px-[2rem]">
+      <section className="relative w-full py-12 sm:px-[5rem] px-[2rem]">
         <div className="w-full flex flex-col sm:flex-row justify-between items-center">
           <TotalScore score={score} />
           <NumberSelector
@@ -66,8 +66,12 @@ const GamePlay = () => {
             Show Rules
           </button>
         </div>
-        <div className="py-4">{showRules && <Rules />}</div>
       </section>
+      {showRules && (
+        <div className="px-5 absolute top-0 py-4 w-full bg-black bg-opacity-20 backdrop-blur-lg">
+          <Rules setShowRules={setShowRules} />
+        </div>
+      )}
     </>
   );
 };
