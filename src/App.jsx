@@ -1,25 +1,19 @@
-import { useState } from "react";
-import "./App.css";
-import StartGame from "./components/StartGame";
-import GamePlay from './components/GamePlay'
+import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './components/Home/Home'
 
 function App() {
-  const [isGameStart, setIsGameStart] = useState(false);
-
-  const toggleGamePlay = ()=> {
-    setIsGameStart((prev)=> !prev);
-  }
 
   return (
     <>
-      {
-        isGameStart ?
-        <GamePlay />
-        :
-        <StartGame toggle={toggleGamePlay} />
-      }
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          
+        </Routes>
+      </Router>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
